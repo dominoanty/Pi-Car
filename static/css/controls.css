@@ -1,0 +1,13 @@
+body
+{
+    background-color: #333;
+}
+
+input[type=button] {
+    height: 100px;
+    width:100px;
+    margin : 5px;
+    background:#444; 
+    border:0 none;
+    cursor:pointer;
+}
