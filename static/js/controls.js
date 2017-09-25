@@ -8,6 +8,24 @@ var map  = {38 : false, 37 : false, 40 : false, 39 : false}
 
 let states = {"KEY1" : 1 , "KEY2" : 2, "KEY1KEY2":3, "DUMMY" : -1}
 
+var textMap = {37: "left", 38 : "forward", 39 : "right", 40 : "backward"}
+
+configFromKeys = function(key1, key2)
+{
+        text = [textMap[key1], textMap[key2]].join('_')
+
+        if(text === "_")
+            return "dummy"
+
+        if (text.substr(0,1) == "_") 
+            return text.substring(1);
+
+        if (text.substr(text.length-1,1) == "_") 
+            return text.substring(0,text.length-1);
+
+        return text
+        
+}
 
 function StateManager(initState){
     this.old_state = initState;
@@ -82,13 +100,24 @@ function StateMachine(){
                                         break;
                                 default: break;
                             }break;
-        case states.KEY1KEY2 : 
+        case states.KEY1KEY2 :
                             if(DIR == that.key1 || DIR == that.key2)
                                     that.stateMgr.changeState(states.KEY1KEY2)
                             break;
         }
         if(that.stateMgr.hasStateChanged())
         {
+                configString = configFromKeys(that.key1, that.key2)
+                $.ajax({
+                type: "POST",
+                url: "/move/" + configString,
+                success : function(response)
+                        {
+                                console.log("Received response " + response)
+
+                        },
+        
+                });
             console.log("State is " + that.stateMgr.new_state + "and old state is " + that.stateMgr.old_state + " and key is " + that.key1 + " and " + that.key2)   
         }
         
@@ -142,6 +171,18 @@ function StateMachine(){
         }
         if(that.stateMgr.hasStateChanged())
         {
+            configString = configFromKeys(that.key1, that.key2)
+            $.ajax({
+                type: "POST",
+                url: "/move/" + configString,
+                success : function(response)
+                        {
+                                console.log("Received response " + response)
+
+                        },
+                
+            });
+
             console.log("State is " + that.stateMgr.new_state + " and key is " + that.key1 + " and " + that.key2)   
         }
     }
