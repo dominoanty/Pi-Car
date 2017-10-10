@@ -191,30 +191,31 @@ function StateMachine(){
 }
 let SMInstance = new StateMachine()
 
-document.addEventListener('keydown', SMInstance.onKeyDown );
+$( document ).keydown(SMInstance.onKeyDown);
 
-document.addEventListener('keyup', SMInstance.onKeyUp);
+$( document ).keyup(SMInstance.onKeyUp);
+
 
 
 
 //----------nav btn clicks
 $(".nav_btn").click(function(event){
     $(this).focus();
-    let keycode = $(this).attr('data-keycode');
+    let keycode = Number($(this).attr('data-keycode'));
     console.log(keycode+" was mousedown")    ;
-    let e = $.Event('keydown');
-    e.which = Number(keycode);
-    e.keyCode = Number(keycode);
+    let e = $.Event('keyup');
+    e.which = keycode;
+    e.keyCode = keycode;
     $( document ).trigger(e);
 });
 
 $(".nav_btn").mouseup(function(event){
     $(this).focus();
-    let keycode = $(this).attr('data-keycode');
+    let keycode = Number($(this).attr('data-keycode'));
     console.log(keycode+ " was mouseup");
-    let e = $.Event('keyup');
-    e.which = Number(keycode);
-    e.keyCode = Number(keycode);
+    let e = $.Event('keydown');
+    e.which = keycode;
+    e.keyCode = keycode;
     $( document ).trigger(e);
 });
 
