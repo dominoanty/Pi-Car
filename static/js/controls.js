@@ -119,6 +119,7 @@ function StateMachine(){
         
                 });
             console.log("State is " + that.stateMgr.new_state + "and old state is " + that.stateMgr.old_state + " and key is " + that.key1 + " and " + that.key2)   
+            $("#reporter").val("State is " + that.stateMgr.new_state)
         }
         
     }
@@ -184,6 +185,7 @@ function StateMachine(){
             });
 
             console.log("State is " + that.stateMgr.new_state + " and key is " + that.key1 + " and " + that.key2)   
+            $("#reporter").text("State is " + that.stateMgr.new_state)   
         }
     }
 
@@ -199,21 +201,21 @@ $( document ).keyup(SMInstance.onKeyUp);
 
 
 //----------nav btn clicks
-$(".nav_btn").click(function(event){
+$(document).on('mousedown touchstart', '.nav_btn', function(event){
     $(this).focus();
     let keycode = Number($(this).attr('data-keycode'));
     console.log(keycode+" was mousedown")    ;
-    let e = $.Event('keyup');
+    let e = $.Event('keydown');
     e.which = keycode;
     e.keyCode = keycode;
     $( document ).trigger(e);
 });
 
-$(".nav_btn").mouseup(function(event){
+$(".nav_btn").on('mouseup touchend', function(event){
     $(this).focus();
     let keycode = Number($(this).attr('data-keycode'));
     console.log(keycode+ " was mouseup");
-    let e = $.Event('keydown');
+    let e = $.Event('keyup');
     e.which = keycode;
     e.keyCode = keycode;
     $( document ).trigger(e);

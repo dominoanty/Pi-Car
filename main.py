@@ -1,7 +1,10 @@
 from flask import Flask, render_template, request
-from NAV_API import NavAPI2
-
-nav = NavAPI2("PRECONFIGURED")
+from DummyNAV import DummyNAV
+try:
+    from NAV_API import NavAPI2
+    nav = NavAPI2("PRECONFIGURED")
+except RuntimeError:
+    nav = DummyNAV()
 
 app = Flask(__name__)
 
