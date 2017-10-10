@@ -195,3 +195,26 @@ document.addEventListener('keydown', SMInstance.onKeyDown );
 
 document.addEventListener('keyup', SMInstance.onKeyUp);
 
+
+
+//----------nav btn clicks
+$(".nav_btn").click(function(event){
+    $(this).focus();
+    let keycode = $(this).attr('data-keycode');
+    console.log(keycode+" was mousedown")    ;
+    let e = $.Event('keydown');
+    e.which = Number(keycode);
+    e.keyCode = Number(keycode);
+    $( document ).trigger(e);
+});
+
+$(".nav_btn").mouseup(function(event){
+    $(this).focus();
+    let keycode = $(this).attr('data-keycode');
+    console.log(keycode+ " was mouseup");
+    let e = $.Event('keyup');
+    e.which = Number(keycode);
+    e.keyCode = Number(keycode);
+    $( document ).trigger(e);
+});
+

@@ -4,18 +4,19 @@
 </head>
 <body>
     <input type="button" value="\"/> 
-    <input type="button" value="^"/>
+    <input type="button" class="nav_btn" id="up_btn" data-keycode='38'value="^"/>
     <input type="button" value="/"/>
     <br/>
-    <input type="button" value="<"/>
+    <input type="button" class="nav_btn" id="left_btn" data-keycode='37' value="<"/>
     <input type="button" value="."/>
-    <input type="button" value=">"/>
+    <input type="button" class="nav_btn" id="right_btn" data-keycode='39' value=">"/>
     <br/>
     <input type="button" value="/"/>
-    <input type="button" value="v"/>
+    <input type="button" class="nav_btn" id="down_btn" data-keycode='40' value="v"/>
     <input type="button" value="\"/>
     <br/>
     <p id="reporter"> Update here </p>
+  
     <script src="/static/js/jquery-3.2.1.min.js"> </script>
     <script src="/static/js/controls.js"> </script>
     <link rel="stylesheet" type="text/css" href="/static/css/controls.css"/>
