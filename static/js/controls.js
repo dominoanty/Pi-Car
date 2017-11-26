@@ -197,7 +197,19 @@ $( document ).keydown(SMInstance.onKeyDown);
 
 $( document ).keyup(SMInstance.onKeyUp);
 
-
+$(document).keypress(function(event){
+  char = String.fromCharCode(event.which);
+  if(char == 'w'){
+    $.ajax({
+            type: "POST",
+            url: "/move",
+            success : function(response)
+                         {
+                                 console.log("PRESSED:"+char+" ...Received response " + response);
+                         }, 
+             }); 
+  }
+  });
 
 
 //----------nav btn clicks
